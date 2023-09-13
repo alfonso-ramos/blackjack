@@ -1,11 +1,16 @@
-let deck = [
-
-]
+let deck = []
 const tipos = ['C', 'D', 'H', 'S']
 const especiales = ['A', 'J', 'Q', 'K']
 
-const crearDeck = () => {
+let puntosJugador = 0
+let puntosComputadora = 0
 
+// Referencias en el DOM
+const btnPedir = document.querySelector('#btnPedir')
+
+let puntajes = document.querySelectorAll('small')
+
+const crearDeck = () => {
     for( let i = 2; i <= 10; i++) {
         for( let tipo of tipos){
             deck.push( i + tipo)
@@ -19,15 +24,12 @@ const crearDeck = () => {
     }
 
     deck = _.shuffle(deck)
-    console.log(deck)
-
     return deck
 }
 crearDeck()
+
 // Funcion para pedir carta
-
 const pedirCarta = () => {
-
     if ( deck.length === 0 ){
         throw 'No hay mas cartas en el deck'
     }
@@ -35,4 +37,29 @@ const pedirCarta = () => {
 
     return ultimaCarta
 }
-pedirCarta()
+
+// valor de cartas
+const valorCarta = (carta) => {
+    const valor = carta.substring(0, carta.length - 1)
+
+    return ( isNaN(valor) ) ?
+            ( valor === 'A' ) ? 11 : 10
+            : valor * 1
+
+    // if(isNaN(valor)) {
+    //     puntos = (valor === 'A') ? 11 : 10
+    // } else {
+    //     puntos = valor * 1
+    // }
+    // return valor
+}
+// Eventos
+
+btnPedir.addEventListener('click', () => {
+    const carta = pedirCarta()
+    puntosJugador = puntosJugador + valorCarta(carta)
+    puntajes[0].innerText = puntosJugador
+
+    
+})
+
