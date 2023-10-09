@@ -8,6 +8,7 @@ let puntosComputadora = 0
 // Referencias en el DOM
 const btnPedir = document.querySelector('#btnPedir')
 const btnDetener = document.querySelector('#btnDetener')
+const btnNuevo = document.querySelector('#btnNuevo')
 
 const cartasJugador = document.querySelector('#jugador-cartas')
 const cartasComputadora = document.querySelector("#computadora-cartas")
@@ -89,9 +90,9 @@ const turnoComputadora = (puntosMinimos) => {
         } else if (puntosComputadora > 21) {
             alert('Jugador Gana')
         } else {
-            alert('Empate')
+            alert('Computadora Gana')
         }
-    }, 10)
+    }, 100)
 }
 
 // Eventos
@@ -121,4 +122,18 @@ btnDetener.addEventListener('click', () => {
     btnPedir.disabled = true
     btnDetener.disabled = true
     turnoComputadora(puntosJugador)
+})
+
+btnNuevo.addEventListener('click', () => {
+    deck = []
+    deck = crearDeck()
+    puntosJugador = 0
+    puntosComputadora = 0
+    puntajes[0].innerText = 0
+    puntajes[1].innerText = 0
+
+    cartasJugador.innerHTML = ''
+    cartasComputadora.innerHTML = ''
+    btnPedir.disabled = false
+    btnDetener.disabled = false
 })
