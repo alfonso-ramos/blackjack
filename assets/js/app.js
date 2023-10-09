@@ -8,6 +8,8 @@ let puntosComputadora = 0
 // Referencias en el DOM
 const btnPedir = document.querySelector('#btnPedir')
 
+const cartasJugador = document.querySelector('#jugador-cartas')
+
 let puntajes = document.querySelectorAll('small')
 
 const crearDeck = () => {
@@ -60,6 +62,15 @@ btnPedir.addEventListener('click', () => {
     puntosJugador = puntosJugador + valorCarta(carta)
     puntajes[0].innerText = puntosJugador
 
-    
+    const imgCarta = document.createElement('img')
+    imgCarta.src = `../cartas/${carta}.png`
+    imgCarta.classList.add('carta')
+    cartasJugador.append(imgCarta)
+
+    if( puntosJugador > 21) {
+        btnPedir.disabled = true
+    } else if (puntosJugador === 21){
+        btnPedir.disabled = true
+    }
 })
 
