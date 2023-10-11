@@ -127,13 +127,11 @@
 
 
         if (puntosJugador > 21) {
-            console.warn('Lo siento mucho, perdiste');
             btnPedir.disabled = true;
             btnDetener.disabled = true;
             turnoComputadora(puntosJugador);
 
         } else if (puntosJugador === 21) {
-            console.warn('21, genial!');
             btnPedir.disabled = true;
             btnDetener.disabled = true;
             turnoComputadora(puntosJugador);
